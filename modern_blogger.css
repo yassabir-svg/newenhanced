@@ -1,0 +1,372 @@
+/* Global Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: #343a40; /* Text */
+  background-color: #f8f9fa; /* Secondary */
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', Verdana, sans-serif;
+  color: #007bff; /* Primary */
+  margin-bottom: 0.75em;
+  line-height: 1.2;
+}
+
+a {
+  color: #007bff; /* Primary */
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Main Container - useful for centering content */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Header */
+.header {
+  background-color: #ffffff; /* Assuming a white header background */
+  padding: 1rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header__logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff; /* Primary */
+  text-decoration: none;
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav__link {
+  color: #343a40; /* Text */
+  font-weight: 500;
+}
+
+.nav__link:hover,
+.nav__link:focus {
+  color: #007bff; /* Primary */
+  text-decoration: none;
+}
+
+.header__menu-button,
+.header__theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #343a40; /* Text */
+}
+
+.header__menu-button svg,
+.header__theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Progress Bar - assuming it's part of the header or fixed */
+#progress-bar {
+  height: 4px;
+  background-color: #007bff; /* Primary */
+  width: 0%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: width 0.2s ease-out;
+}
+
+
+/* Main Content Area */
+.main {
+  padding: 2rem 0;
+}
+
+.main__content {
+  display: grid;
+  gap: 2rem;
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Primary Content Area (Blog Posts) */
+.main__primary {
+  /* Takes up full width on mobile by default */
+}
+
+/* Post Card */
+.post-card {
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  overflow: hidden; /* Ensures border-radius clips child elements like images */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.post-card__image {
+  width: 100%;
+  max-height: 300px; /* Adjust as needed */
+  overflow: hidden;
+}
+
+.post-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the area, might crop */
+}
+
+.post-card__content {
+  padding: 1.5rem;
+}
+
+.post-card__title {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-card__title a {
+  color: #007bff; /* Primary */
+  text-decoration: none;
+}
+
+.post-card__title a:hover {
+  text-decoration: underline;
+}
+
+.post-card__excerpt {
+  color: #343a40; /* Text */
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.post-card__meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #6c757d; /* Secondary Text */
+}
+
+.post-card__meta-item {
+  /* Individual meta item styling if needed */
+}
+
+/* Sidebar */
+.main__sidebar {
+  /* Hidden on mobile by default, shown on larger screens */
+}
+
+.widget {
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.widget__title {
+  font-size: 1.25rem;
+  color: #343a40; /* Text */
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.widget__list {
+  list-style: none;
+}
+
+.widget__list-item {
+  margin-bottom: 0.5rem;
+}
+
+.widget__link {
+  color: #343a40; /* Text */
+  font-size: 0.9rem;
+}
+
+.widget__link:hover {
+  color: #007bff; /* Primary */
+}
+
+/* Footer */
+.footer {
+  background-color: #343a40; /* Text color as background for contrast */
+  color: #f8f9fa; /* Secondary color for text */
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer__container {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer__text {
+  font-size: 0.9rem;
+}
+
+.footer__text a {
+  color: #f8f9fa; /* Secondary for links in footer */
+}
+
+/* Responsive Adjustments */
+
+/* Mobile Menu - assuming .is-open is toggled by JS */
+.nav {
+  /* Styles for mobile menu container if needed */
+}
+
+@media (max-width: 767px) {
+  .nav__list {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    padding: 1rem;
+    z-index: 999;
+  }
+
+  .nav__list.is-open {
+    display: flex;
+  }
+
+  .header__menu-button {
+    display: block; /* Show hamburger menu */
+  }
+}
+
+@media (min-width: 768px) {
+  .header__menu-button {
+    display: none; /* Hide hamburger menu on larger screens */
+  }
+
+  .nav__list {
+    display: flex; /* Ensure nav list is flex on larger screens */
+    position: static;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  .main__content {
+    grid-template-columns: 2fr 1fr; /* Two columns: primary content and sidebar */
+  }
+}
+
+/* Dark Theme (Optional - based on JS toggle using data-theme attribute) */
+[data-theme="dark"] body {
+  background-color: #212529; /* Darker background */
+  color: #f8f9fa; /* Light text */
+}
+
+[data-theme="dark"] .header,
+[data-theme="dark"] .post-card,
+[data-theme="dark"] .widget {
+  background-color: #343a40; /* Darker element backgrounds */
+  border-color: #495057; /* Darker borders */
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .post-card__title a {
+  color: #009bff; /* Slightly adjusted primary for dark mode if needed */
+}
+
+[data-theme="dark"] a {
+  color: #009bff;
+}
+
+[data-theme="dark"] .nav__link,
+[data-theme="dark"] .header__menu-button,
+[data-theme="dark"] .header__theme-toggle,
+[data-theme="dark"] .post-card__excerpt,
+[data-theme="dark"] .widget__title,
+[data-theme="dark"] .widget__link {
+  color: #f8f9fa; /* Light text for these elements */
+}
+
+[data-theme="dark"] .post-card__meta {
+  color: #adb5bd; /* Lighter secondary text */
+}
+
+[data-theme="dark"] .footer {
+  background-color: #1c1e22; /* Even darker footer */
+  color: #e9ecef;
+}
+[data-theme="dark"] .footer__text a {
+  color: #e9ecef;
+}
+
+/* Utility Classes */
+.mt-1 { margin-top: 1rem !important; }
+.mb-1 { margin-bottom: 1rem !important; }
+.pt-1 { padding-top: 1rem !important; }
+.pb-1 { padding-bottom: 1rem !important; }
+
+.text-center { text-align: center !important; }
+.hidden { display: none !important; }
+
+/* For elements that should only be visible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
