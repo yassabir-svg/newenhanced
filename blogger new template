@@ -1,9 +1,423 @@
-72 4.22l1.42 1.42m0 12.72l-1.42 1.42M1 12h2m16 0h2m-2.22-7.78l-1.42 1.42m-12.72 0l1.42-1.42' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>
-          </svg>
-        </button>
-      </nav>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' lang='en_US'>
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+  <title><data:blog.pageTitle/></title>
+  <b:include data='blog' name='all-head-content'/>
+  <b:skin><![CDATA[
+/* Global Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: #343a40; /* Text */
+  background-color: #f8f9fa; /* Secondary */
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', Verdana, sans-serif;
+  color: #007bff; /* Primary */
+  margin-bottom: 0.75em;
+  line-height: 1.2;
+}
+
+a {
+  color: #007bff; /* Primary */
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Main Container - useful for centering content */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Header */
+.header {
+  background-color: #ffffff; /* Assuming a white header background */
+  padding: 1rem 0;
+  border-bottom: 1px solid #e9ecef;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900; /* Below progress bar but above other content */
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.header--scrolled {
+  background-color: #f8f9fa; /* Slightly different or more opaque */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header__logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff; /* Primary */
+  text-decoration: none;
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav__link {
+  color: #343a40; /* Text */
+  font-weight: 500;
+}
+
+.nav__link:hover,
+.nav__link:focus {
+  color: #007bff; /* Primary */
+  text-decoration: none;
+}
+
+.header__menu-button,
+.header__theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #343a40; /* Text */
+}
+
+.header__menu-button svg,
+.header__theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Progress Bar - assuming it's part of the header or fixed */
+#progress-bar {
+  height: 4px;
+  background-color: #007bff; /* Primary */
+  width: 0%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: width 0.2s ease-out;
+}
+
+
+/* Main Content Area */
+.main {
+  padding: 2rem 0;
+}
+
+.main__content {
+  display: grid;
+  gap: 2rem;
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Primary Content Area (Blog Posts) */
+.main__primary {
+  /* Takes up full width on mobile by default */
+}
+
+/* Post Card */
+.post-card {
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  overflow: hidden; /* Ensures border-radius clips child elements like images */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.post-card__image {
+  width: 100%;
+  max-height: 300px; /* Adjust as needed */
+  overflow: hidden;
+}
+
+.post-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the area, might crop */
+}
+
+.post-card__content {
+  padding: 1.5rem;
+}
+
+.post-card__title {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-card__title a {
+  color: #007bff; /* Primary */
+  text-decoration: none;
+  overflow-wrap: break-word; /* Prevent long titles from breaking layout */
+}
+
+.post-card__title a:hover {
+  text-decoration: underline;
+}
+
+.post-card__excerpt {
+  color: #343a40; /* Text */
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  overflow-wrap: break-word; /* Prevent long excerpts from breaking layout */
+}
+
+.post-card__meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #6c757d; /* Secondary Text */
+  flex-wrap: wrap; /* Allow meta items to wrap on small screens */
+}
+
+.post-card__meta-item {
+  /* Individual meta item styling if needed */
+}
+
+/* Sidebar */
+.main__sidebar {
+  /* Hidden on mobile by default, shown on larger screens */
+}
+
+.widget {
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.widget__title {
+  font-size: 1.25rem;
+  color: #343a40; /* Text */
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.widget__list {
+  list-style: none;
+}
+
+.widget__list-item {
+  margin-bottom: 0.5rem;
+}
+
+.widget__link {
+  color: #343a40; /* Text */
+  font-size: 0.9rem;
+}
+
+.widget__link:hover {
+  color: #007bff; /* Primary */
+}
+
+/* Footer */
+.footer {
+  background-color: #343a40; /* Text color as background for contrast */
+  color: #f8f9fa; /* Secondary color for text */
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer__container {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer__text {
+  font-size: 0.9rem;
+}
+
+.footer__text a {
+  color: #f8f9fa; /* Secondary for links in footer */
+}
+
+/* Responsive Adjustments */
+
+/* Mobile Menu - assuming .is-open is toggled by JS */
+.nav {
+  /* Styles for mobile menu container if needed */
+}
+
+@media (max-width: 767px) {
+  .nav__list {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    padding: 1rem;
+    z-index: 999;
+  }
+
+  .nav__list.is-open {
+    display: flex;
+  }
+
+  .header__menu-button {
+    display: block; /* Show hamburger menu */
+  }
+}
+
+@media (min-width: 768px) {
+  .header__menu-button {
+    display: none; /* Hide hamburger menu on larger screens */
+  }
+
+  .nav__list {
+    display: flex; /* Ensure nav list is flex on larger screens */
+    position: static;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  .main__content {
+    grid-template-columns: 2fr 1fr; /* Two columns: primary content and sidebar */
+  }
+}
+
+/* Dark Theme (Optional - based on JS toggle using data-theme attribute) */
+[data-theme="dark"] body {
+  background-color: #212529; /* Darker background */
+  color: #f8f9fa; /* Light text */
+}
+
+[data-theme="dark"] .header,
+[data-theme="dark"] .post-card,
+[data-theme="dark"] .widget {
+  background-color: #343a40; /* Darker element backgrounds */
+  border-color: #495057; /* Darker borders */
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .post-card__title a {
+  color: #009bff; /* Slightly adjusted primary for dark mode if needed */
+}
+
+[data-theme="dark"] a {
+  color: #009bff;
+}
+
+[data-theme="dark"] .nav__link,
+[data-theme="dark"] .header__menu-button,
+[data-theme="dark"] .header__theme-toggle,
+[data-theme="dark"] .post-card__excerpt,
+[data-theme="dark"] .widget__title,
+[data-theme="dark"] .widget__link {
+  color: #f8f9fa; /* Light text for these elements */
+}
+
+[data-theme="dark"] .post-card__meta {
+  color: #adb5bd; /* Lighter secondary text */
+}
+
+[data-theme="dark"] .footer {
+  background-color: #1c1e22; /* Even darker footer */
+  color: #e9ecef;
+}
+[data-theme="dark"] .footer__text a {
+  color: #e9ecef;
+}
+
+/* Utility Classes */
+.mt-1 { margin-top: 1rem !important; }
+.mb-1 { margin-bottom: 1rem !important; }
+.pt-1 { padding-top: 1rem !important; }
+.pb-1 { padding-bottom: 1rem !important; }
+
+.text-center { text-align: center !important; }
+.hidden { display: none !important; }
+
+/* For elements that should only be visible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+]]></b:skin>
+</head>
+<body>
+
+<div id='progress-bar' role='progressbar' aria-valuemin='0' aria-valuemax='100' aria-valuenow='0'></div>
+
+<header class='header' id='header' role='banner'>
+  <div class='header__container'>
+    <div class='header__logo'>
+      <a expr:href='data:blog.homepageUrl'><data:blog.title/></a>
     </div>
-  </header>
+    <nav class='nav' id='nav-menu' role='navigation'>
+      <button class='header__menu-button' aria-expanded='false' aria-controls='nav-menu' aria-label='Toggle menu' type='button'>
+        <svg viewbox='0 0 24 24' fill='currentColor' style='width:24px;height:24px;'><path d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/></svg>
+      </button>
+      <ul class='nav__list'>
+        <li class='nav__item'><a class='nav__link' expr:href='data:blog.homepageUrl'>Home</a></li>
+        <!-- Add more nav items here if needed, or use a Blogger LinkList widget -->
+      </ul>
+    </nav>
+    <button class='header__theme-toggle' id='theme-toggle' type='button' aria-label='Toggle Theme'>
+      <svg viewbox='0 0 24 24' fill='currentColor' style='width:24px;height:24px;'><path d='M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z'/></svg>
+    </button>
+  </div>
+</header>
 
   <!-- Main Content -->
   <main class='main' id='main-content' role='main'>
@@ -72,72 +486,103 @@
 
   <!-- JavaScript -->
   <script>
+    // Helper function to query DOM elements
+    function $(selector, context = document) {
+      return context.querySelector(selector);
+    }
+    function $$(selector, context = document) {
+      return Array.from(context.querySelectorAll(selector));
+    }
+
     // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'auto';
-    
-    if (currentTheme !== 'auto') {
-      document.documentElement.setAttribute('data-theme', currentTheme);
+    const themeToggle = $('#theme-toggle');
+    if (themeToggle) {
+      const currentTheme = localStorage.getItem('theme') || 'auto';
+      if (currentTheme !== 'auto') {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+      }
+      
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+      });
     }
     
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-    });
-    
     // Mobile Menu Toggle
-    const menuButton = document.querySelector('.header__menu-button');
-    const navMenu = document.getElementById('nav-menu');
+    const menuButton = $('.header__menu-button');
+    const navMenu = $('#nav-menu');
     
-    menuButton.addEventListener('click', () => {
-      const expanded = menuButton.getAttribute('aria-expanded') === 'true';
-      menuButton.setAttribute('aria-expanded', !expanded);
-      navMenu.classList.toggle('is-open');
-    });
+    if (menuButton && navMenu) {
+      menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', !expanded);
+        navMenu.classList.toggle('is-open');
+      });
+    }
     
-    // Progress Bar
-    const progressBar = document.getElementById('progress-bar');
-    
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset;
-      const docHeight = document.body.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      
-      progressBar.style.width = scrollPercent + '%';
-      progressBar.setAttribute('aria-valuenow', Math.round(scrollPercent));
-    });
-    
-    // Header Scroll Effect
-    const header = document.getElementById('header');
-    let lastScrollY = window.scrollY;
-    
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 10) {
-        header.classList.add('header--scrolled');
-      } else {
-        header.classList.remove('header--scrolled');
+    // Scroll-dependent effects
+    const progressBar = $('#progress-bar');
+    const headerEl = $('#header');
+    let lastScrollY = window.scrollY; // Used for header effect, can be extended for other effects
+
+    function handleScrollEffects() {
+      const scrollTop = window.pageYOffset; // More compatible than scrollY
+
+      // Progress Bar
+      if (progressBar) {
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        // Ensure docHeight is not zero to prevent division by zero
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+        progressBar.style.width = scrollPercent + '%';
+        progressBar.setAttribute('aria-valuenow', String(Math.round(scrollPercent)));
       }
-    });
+
+      // Header Scroll Effect
+      if (headerEl) {
+        if (scrollTop > 10) {
+          headerEl.classList.add('header--scrolled');
+        } else {
+          headerEl.classList.remove('header--scrolled');
+        }
+      }
+
+      lastScrollY = scrollTop; // Update last scroll position
+    }
+
+    // Attach consolidated scroll listener if elements requiring it exist
+    if (progressBar || headerEl) {
+      window.addEventListener('scroll', handleScrollEffects);
+      // Initial call to set states correctly on page load (e.g. if page is already scrolled or for initial header state)
+      handleScrollEffects();
+    }
+
+    // Lazy Loading Images (leveraging browser's native loading="lazy")
+    const lazyImages = $$('img[loading="lazy"]');
     
-    // Lazy Loading Images
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    
-    if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver((entries) => {
+    if ('IntersectionObserver' in window && lazyImages.length > 0) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const img = entry.target;
-            img.classList.add('loaded');
-            imageObserver.unobserve(img);
+            img.classList.add('loaded'); // Add class for potential CSS transitions (e.g., fade-in)
+            // Native lazy loading handles src, no need to set img.src from data-src here.
+            // If this class 'lazy-image' was for pre-load styling, it's fine.
+            observer.unobserve(img);
           }
         });
       });
       
-      images.forEach(img => {
-        img.classList.add('lazy-image');
+      lazyImages.forEach(img => {
+        // img.classList.add('lazy-image'); // This class was in the original code. If it's for styling unloaded images, keep it.
+                                         // If not, it can be removed as native lazy loading does the job.
+                                         // For now, I'll keep it as it was in the original.
+        if (!img.classList.contains('lazy-image')) { // Ensure it's not added multiple times if already present
+            img.classList.add('lazy-image');
+        }
         imageObserver.observe(img);
       });
     }
