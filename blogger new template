@@ -1,0 +1,146 @@
+72 4.22l1.42 1.42m0 12.72l-1.42 1.42M1 12h2m16 0h2m-2.22-7.78l-1.42 1.42m-12.72 0l1.42-1.42' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class='main' id='main-content' role='main'>
+    <div class='main__content'>
+      <!-- Primary Content Area -->
+      <div class='main__primary'>
+        <b:section class='main' id='main' maxwidgets='1' showaddelement='no'>
+          <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='1' visible='true'>
+            <b:includable id='main'>
+              <b:loop values='data:posts' var='post'>
+                <article class='post-card'>
+                  <b:if cond='data:post.featuredImage'>
+                    <div class='post-card__image'>
+                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                    </div>
+                  </b:if>
+                  <div class='post-card__content'>
+                    <h2 class='post-card__title'>
+                      <a expr:href='data:post.canonicalUrl'><data:post.title/></a>
+                    </h2>
+                    <p class='post-card__excerpt'><data:post.snippet/></p>
+                    <div class='post-card__meta'>
+                      <span class='post-card__meta-item'>
+                        <data:post.author.displayName/>
+                      </span>
+                      <span class='post-card__meta-item'>
+                        <data:post.timestamp/>
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </b:loop>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class='main__sidebar' role='complementary'>
+        <b:section class='sidebar' id='sidebar' showaddelement='yes'>
+          <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' version='1' visible='true'>
+            <b:includable id='main'>
+              <div class='widget'>
+                <h3 class='widget__title'><data:title/></h3>
+                <ul class='widget__list'>
+                  <b:loop values='data:posts' var='post'>
+                    <li class='widget__list-item'>
+                      <a class='widget__link' expr:href='data:post.href'><data:post.title/></a>
+                    </li>
+                  </b:loop>
+                </ul>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class='footer' role='contentinfo'>
+    <div class='footer__container'>
+      <p class='footer__text'>© 2025 <data:blog.title/>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'auto';
+    
+    if (currentTheme !== 'auto') {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+    
+    // Mobile Menu Toggle
+    const menuButton = document.querySelector('.header__menu-button');
+    const navMenu = document.getElementById('nav-menu');
+    
+    menuButton.addEventListener('click', () => {
+      const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', !expanded);
+      navMenu.classList.toggle('is-open');
+    });
+    
+    // Progress Bar
+    const progressBar = document.getElementById('progress-bar');
+    
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      
+      progressBar.style.width = scrollPercent + '%';
+      progressBar.setAttribute('aria-valuenow', Math.round(scrollPercent));
+    });
+    
+    // Header Scroll Effect
+    const header = document.getElementById('header');
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('header--scrolled');
+      } else {
+        header.classList.remove('header--scrolled');
+      }
+    });
+    
+    // Lazy Loading Images
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.classList.add('loaded');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+      
+      images.forEach(img => {
+        img.classList.add('lazy-image');
+        imageObserver.observe(img);
+      });
+    }
+  </script>
+</body>
+</html>
